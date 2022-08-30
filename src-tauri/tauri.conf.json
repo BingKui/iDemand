@@ -64,7 +64,12 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://oss.uiseed.cn/app/iDemand/latest.json"
+      ],
+      "dialog": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZGQ0VGRTUxMzg5NDY5RjUKUldUMWFaUTRVZjdPL3hybEZZdnFrSzlacVhUbVE5SEdRYWZJWWRLYWtEVTBHa2g1RElkUjZ5OGQK"
     },
     "systemTray": {
       "iconPath": "icons/tray.png",
