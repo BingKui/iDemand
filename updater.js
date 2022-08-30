@@ -18,9 +18,9 @@ const content = fs.readFileSync('./package.json', {
     encoding: 'utf-8'
 });
 // 获取 x86 signature
-const x86Signature = fs.readFileSync('./src-tauri/target/x86_64-apple-darwin/release/bundle/macos/iDeploy.app.tar.gz.sig', { encoding: 'utf-8' });
-const armSignature = fs.readFileSync('./src-tauri/target/aarch64-apple-darwin/release/bundle/macos/iDeploy.app.tar.gz.sig', { encoding: 'utf-8' });
 const packageInfo = JSON.parse(content);
+const x86Signature = fs.readFileSync(`./src-tauri/target/x86_64-apple-darwin/release/bundle/macos/${packageInfo.name}.app.tar.gz.sig`, { encoding: 'utf-8' });
+const armSignature = fs.readFileSync(`./src-tauri/target/aarch64-apple-darwin/release/bundle/macos/${packageInfo.name}.app.tar.gz.sig`, { encoding: 'utf-8' });
 const versionContent = `{
     "version": "v${packageInfo.version}",
     "notes": "解决了一些已知问题。",
