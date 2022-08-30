@@ -1,0 +1,86 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "yarn dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "iDemand",
+    "version": "0.0.1"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true,
+      "shell": {
+        "all": false,
+        "execute": true,
+        "open": true,
+        "scope": [{
+          "name": "code-open",
+          "cmd": "code",
+          "args": true
+        }, {
+          "name": "webstorm-open",
+          "cmd": "webstorm",
+          "args": true
+        }],
+        "sidecar": false
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/icon.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "cn.uiseed.idemand",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "systemTray": {
+      "iconPath": "icons/tray.png",
+      "iconAsTemplate": true
+    },
+    "macOSPrivateApi": true,
+    "windows": [{
+      "fullscreen": false,
+      "height": 640,
+      "resizable": true,
+      "title": "iDemand",
+      "width": 800,
+      "minHeight": 640,
+      "minWidth": 1000,
+      "visible": false,
+      "decorations": false
+    }]
+  }
+}
