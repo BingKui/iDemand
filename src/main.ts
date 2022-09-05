@@ -9,6 +9,7 @@ import About from './views/About.vue';
 import CSSDoodle from 'css-doodle';
 
 import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css';
+import 'element-plus/es/components/notification/style/css';
 
 const routes = [
     { path: '/', component: DemandList },

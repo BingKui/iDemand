@@ -14,6 +14,14 @@
                     </div>
                 </SettingItem>
             </el-col>
+            <el-col :span="12">
+                <SettingItem label="自动更新" tip="开启后每次启动都会自动检查版本更新">
+                    <div class="flex-row-between flex-item-one">
+                        <Updater haveButton />
+                        <el-switch v-model="isAuto" @change="handleAutoChange" />
+                    </div>
+                </SettingItem>
+            </el-col>
             <!-- <el-col :span="12">
                 <SettingItem label="每日提醒" tip="每日提醒待完成的任务信息。">
                     <el-switch v-model="isNotice" />
@@ -22,16 +30,10 @@
                 </SettingItem>
             </el-col> -->
             <!-- <el-col :span="12">
-                <SettingItem label="自动更新" tip="开启后每次启动都会自动检查版本更新">
-                    <el-switch v-model="isAuto" />
-                </SettingItem>
-            </el-col>
-            <el-col :span="12">
                 <SettingItem class="margin-top-md" label="软件更新" tip="检查软件版本，更新版本">
                     <el-button size="small" type="primary" @click="handleCheckUpdate">检查更新</el-button>
                 </SettingItem>
             </el-col> -->
-            <!-- <el-button @click="changeSetting">关闭</el-button> -->
         </el-row>
     </div>
 </template>
@@ -48,7 +50,7 @@ import { SettingValue } from '../common/types';
 import { CODE_APP_LIST } from '../constants/setting';
 const codeApp = ref('vscode');
 const isNotice = ref(false);
-// const isAuto = ref(false);
+const isAuto = ref(false);
 const noticeTime = ref('');
 
 onMounted(async () => {
@@ -57,7 +59,7 @@ onMounted(async () => {
 
 const getSystemSetting = async () => {
     const settingInfo: SettingValue = await invoke('get_setting');
-    console.log('获取到的设置为 -> ', settingInfo);
+    console.log('settingInfo -> ', settingInfo);
     isNotice.value = settingInfo.is_notice;
     noticeTime.value = settingInfo.notice_time;
 };
@@ -80,14 +82,21 @@ const changeSetting = async () => {
     const setting = {
         is_notice: isNotice.value,
         notice_time: noticeTime.value,
+        auto_update: isAuto.value,
     };
     await emit('change-setting', setting);
     ElNotification({
         title: '修改成功',
-        message: '修改提醒时间成功！',
+        message: '修改设置成功！',
         type: 'success',
     })
     await getSystemSetting();
+}
+
+const handleAutoChange = async (value: boolean | any) => {
+    console.log('是否开启 ->', value);
+    isAuto.value = value;
+    await changeSetting();
 }
 
 </script>

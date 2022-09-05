@@ -54,6 +54,7 @@ impl SettingApp {
     }
     pub fn set_sys(&self, setting: SettingInfo) -> bool {
         let content = serde_json::to_string(&setting).unwrap();
+        println!("设置信息为 -> {:?}", content);
         fs::write(self.path.to_string(), content).unwrap();
         true
     }

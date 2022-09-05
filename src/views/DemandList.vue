@@ -19,6 +19,7 @@
             </el-row>
         </PerfectScrollbar>
         <DemandDetail :detail="detailItem" :show="showDetail" @close="handleDetailClose" @refresh="getDemandList" />
+        <Updater :isAuto="autoUpdate" :haveButton="false" />
     </div>
 </template>
 
@@ -28,7 +29,7 @@ import { AllApplication, HamburgerButton, SettingTwo, Search } from '@icon-park/
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
 import { invoke } from '@tauri-apps/api/tauri';
 import { debounce } from 'lodash';
-import { DemandItemType } from '../common/types';
+import { DemandItemType, SettingValue } from '../common/types';
 import { listen } from '@tauri-apps/api/event';
 
 const demandList: Ref<DemandItemType[]> = ref([]);
@@ -36,10 +37,14 @@ const demandFilterList: Ref<DemandItemType[]> = ref([]);
 const detailItem: Ref<DemandItemType | undefined> = ref<DemandItemType>();
 const showDetail = ref<boolean>(false);
 const searchValue = ref('');
+const autoUpdate = ref<boolean>(false);
 
 onMounted(async () => {
     await getDemandList();
     listen('refresh-demand', getDemandList);
+    const settingInfo: SettingValue = await invoke('get_setting');
+    console.log('settingInfo => ', settingInfo);
+    autoUpdate.value = settingInfo.auto_update;
 });
 
 const handleSearchValueChange = (val: string) => {
