@@ -20,7 +20,7 @@
                 </el-space>
             </div>
         </div>
-        <template #footer>
+        <template #footer v-if="!onlyShow">
             <div class="action-footer padding-all-md flex-row">
                 <el-button type="success" @click="handleDesktop">{{ winInfo ? '从桌面移除' : '放到桌面' }}</el-button>
                 <EditorDemand is-edit :info="detail" @refresh="handleRefresh" />
@@ -36,8 +36,8 @@ import { DemandItemType, WinInfoValue } from '../common/types';
 import { invoke } from '@tauri-apps/api/tauri';
 import { WebviewWindow } from '@tauri-apps/api/window';
 import { listen } from '@tauri-apps/api/event';
-const props = defineProps<{ show: boolean, detail: DemandItemType }>();
-const { show, detail } = toRefs(props);
+const props = defineProps<{ show: boolean, detail: DemandItemType, onlyShow: boolean }>();
+const { show, detail, onlyShow } = toRefs(props);
 const emits = defineEmits(['close', 'refresh']);
 const winInfo = ref<WinInfoValue | undefined>(undefined);
 

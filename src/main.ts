@@ -3,7 +3,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Tpl from './Tpl.vue';
 import DemandList from './views/DemandList.vue';
 import Demand from './views/Demand.vue';
+import Ongoing from './views/Ongoing.vue'
 import Complate from './views/Complate.vue'
+import Deploy from './views/Deploy.vue'
 import Setting from './views/Setting.vue';
 import About from './views/About.vue';
 import CSSDoodle from 'css-doodle';
@@ -13,7 +15,9 @@ import 'element-plus/es/components/notification/style/css';
 
 const routes = [
     { path: '/', component: DemandList },
+    { path: '/ongoing', component: Ongoing },
     { path: '/complate', component: Complate },
+    { path: '/deploy', component: Deploy },
     { path: '/demand/:demandId', component: Demand },
     { path: '/setting', component: Setting },
     { path: '/about', component: About },

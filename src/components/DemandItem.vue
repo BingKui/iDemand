@@ -2,7 +2,7 @@
     <el-card class="v-demand-item margin-bottom-md" shadow="hover">
         <div class="flex-row">
             <span class="demand-name flex-item-one font-size-md text-title font-weight-bold text-overflow" @click="handleOpenDetail">{{ demand.name }}</span>
-            <DemandStatus :demand="demand" />
+            <DemandStatus :demand="demand" @change="handleChange" />
         </div>
         <div class="demand-desc font-size text-sub margin-v text-overflow-two">{{ demand.desc }}</div>
         <el-space :size="10">
@@ -25,7 +25,7 @@ import { DEMAND_STATUS_LIST } from '../constants/demand';
 
 const props = defineProps<{ demand: DemandItemType }>();
 const { demand } = toRefs(props);
-const emits = defineEmits(['detail']);
+const emits = defineEmits(['detail', 'refresh']);
 
 const statusInfo = computed(() => {
     return DEMAND_STATUS_LIST.filter(temp => demand.value.status == temp.value)[0];
@@ -35,6 +35,9 @@ const handleOpenDetail = () => {
     emits('detail', demand.value);
 }
 
+const handleChange = () => {
+    emits('refresh');
+}
 </script>
 
 <style lang="less" scoped>

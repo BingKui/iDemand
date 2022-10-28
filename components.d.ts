@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     DemandDetail: typeof import('./src/components/DemandDetail.vue')['default']
     DemandItem: typeof import('./src/components/DemandItem.vue')['default']
     DemandStatus: typeof import('./src/components/DemandStatus.vue')['default']
+    DemandStatusList: typeof import('./src/components/DemandStatusList.vue')['default']
     DrawerHeader: typeof import('./src/components/DrawerHeader.vue')['default']
     EditorDemand: typeof import('./src/components/EditorDemand.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']

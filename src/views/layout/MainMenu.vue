@@ -6,14 +6,18 @@
                 <ListOne class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
                 <span class="font-weight-bold">需求</span>
             </el-menu-item>
-            <!-- <el-menu-item index="/complate">
+            <el-menu-item index="/ongoing">
+                <Lightning class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
+                <span class="font-weight-bold">进行中</span>
+            </el-menu-item>
+            <el-menu-item index="/complate">
                 <List class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
                 <span class="font-weight-bold">已完成</span>
             </el-menu-item>
             <el-menu-item index="/deploy">
                 <Send class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
                 <span class="font-weight-bold">已发布</span>
-            </el-menu-item> -->
+            </el-menu-item>
             <!-- <el-menu-item index="/report">
                 <TableReport class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
                 <span class="font-weight-bold">报表</span>
@@ -32,7 +36,7 @@
 
 <script setup lang="ts">
 import Logo from './Logo.vue';
-import { ListOne, List, Send, TableReport, SettingTwo, Info } from '@icon-park/vue-next';
+import { ListOne, List, Send, Lightning, TableReport, SettingTwo, Info } from '@icon-park/vue-next';
 
 </script>
 

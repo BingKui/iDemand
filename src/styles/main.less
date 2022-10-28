@@ -5,13 +5,18 @@
 @import "./gap.less";
 @import "./overwrite.less";
 
+@font-face {
+    font-family: 'alimama-font';
+    src: url('../assets/fonts/Alimama_ShuHeiTi_Bold.woff2') format('woff2');
+}
+
 .border-radius {
     border-radius: @border-radius;
 }
 
 .v-body, body, html {
     background-color: @background-color;
-    font-family: @font-family;
+    font-family: @font-family !important;
 }
 .v-body {
     height: 100vh;
