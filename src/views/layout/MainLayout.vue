@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <CloseOne class="close-icon" theme="filled" size="16" fill="#ed4014" :strokeWidth="2" @click="handleClose" /> -->
         <el-container class="v-main-layout">
             <el-aside class="left-side" width="200px" data-tauri-drag-region>
                 <MainMenu />
@@ -13,21 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { CloseOne } from '@icon-park/vue-next';
 import { WebviewWindow } from '@tauri-apps/api/window';
-import hotkeys from 'hotkeys-js';
 import { onMounted } from 'vue';
 import MainMenu from './MainMenu.vue';
-
-// const handleClose = () => {
-//     WebviewWindow.getByLabel('main')?.hide();
-// };
 
 onMounted(() => {
     // 展示
     WebviewWindow.getByLabel('main')?.show();
-    // 关闭
-    // hotkeys('command+W', handleClose);
 });
 </script>
 

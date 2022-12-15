@@ -1,5 +1,5 @@
 <template>
-    <el-card class="v-setting-item">
+    <el-card class="v-setting-item" shadow="hover">
         <div class="setting-content flex-column-between">
             <div class="font-size-md font-weight-bold">{{ label }}</div>
             <div class="font-size-sm text-sub margin-top-sm">{{ tip }}</div>
@@ -23,7 +23,7 @@ const { label, tip } = toRefs(props);
     user-select: none;
     cursor: default;
     .setting-content {
-        min-height: 80px;
+        height: 100px;
     }
 }
 </style>

@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ActionItem: typeof import('./src/components/ActionItem.vue')['default']
+    DemandCopy: typeof import('./src/components/DemandCopy.vue')['default']
     DemandDetail: typeof import('./src/components/DemandDetail.vue')['default']
     DemandItem: typeof import('./src/components/DemandItem.vue')['default']
     DemandStatus: typeof import('./src/components/DemandStatus.vue')['default']
@@ -37,6 +38,7 @@ declare module '@vue/runtime-core' {
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElTag: typeof import('element-plus/es')['ElTag']
     ExtraModal: typeof import('./src/components/ExtraModal.vue')['default']
+    ImportAndExport: typeof import('./src/components/ImportAndExport.vue')['default']
     LinkItem: typeof import('./src/components/LinkItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

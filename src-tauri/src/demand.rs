@@ -161,7 +161,7 @@ impl DemandApp {
         Ok(items)
     }
     pub fn get_demands_by_status(&self, status: f64) -> Result<Vec<DemandItem>> {
-        let mut stmt = self.conn.prepare("SELECT * FROM DemandList WHERE status = ?").unwrap();
+        let mut stmt = self.conn.prepare("SELECT * FROM DemandList WHERE status = ? ORDER BY create_date DESC").unwrap();
         let items_iter = stmt.query_map([status.to_string()], |row| {
             let links_str: String = row.get(10).unwrap();
             let links = serde_json::from_str(&links_str).unwrap();

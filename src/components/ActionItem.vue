@@ -11,17 +11,17 @@
 <script setup lang="ts">
 import { toRefs } from 'vue';
 import { open, Command } from '@tauri-apps/api/shell';
-import { invoke } from '@tauri-apps/api/tauri';
 import { CODE_APP_LIST } from '../constants/setting';
-import { CodeAppItem, SettingValue } from '../common/types';
+import { CodeAppItem, AppSettingValue } from '../common/types';
+import { getAppSettingData } from '../api/setting';
 
 type ACTION_TYPE = 'demand' | 'ui' | 'api' | 'code' | 'publish';
 const props = defineProps<{ type: ACTION_TYPE, value: string }>();
 const { type, value } = toRefs(props);
 
 const getShell = async () => {
-    const setting: SettingValue = await invoke('get_setting');
-    return CODE_APP_LIST.filter((item: CodeAppItem) => item.value === setting.code_app)[0].shell;
+    const setting: AppSettingValue = await getAppSettingData();
+    return CODE_APP_LIST.filter((item: CodeAppItem) => item.value === setting.codeApp)[0].shell;
 }
 
 const handleItemClick = async () => {

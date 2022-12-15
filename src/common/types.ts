@@ -48,11 +48,6 @@ export interface CodeAppItem {
     shell: string;
 }
 
-export interface SettingValue {
-    code_app: string;
-    dock_show: boolean;
-    is_notice: boolean;
-    notice_time: string;
-    auto_start: boolean;
-    auto_update: boolean;
+export interface AppSettingValue {
+    codeApp: string;
 }

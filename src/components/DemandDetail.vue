@@ -24,6 +24,7 @@
             <div class="action-footer padding-all-md flex-row">
                 <el-button type="success" size="large" @click="handleDesktop">{{ winInfo ? '从桌面移除' : '放到桌面' }}</el-button>
                 <EditorDemand is-edit :info="detail" @refresh="handleRefresh" />
+                <el-button type="warning" size="large" @click="handleCopy">复制内容</el-button>
                 <el-button type="danger" size="large" @click="handleDelete">删除</el-button>
             </div>
         </template>
@@ -36,6 +37,7 @@ import { DemandItemType, WinInfoValue } from '../common/types';
 import { invoke } from '@tauri-apps/api/tauri';
 import { WebviewWindow } from '@tauri-apps/api/window';
 import { listen } from '@tauri-apps/api/event';
+import { writeText } from '@tauri-apps/api/clipboard';
 const props = defineProps<{ show: boolean, detail: DemandItemType, onlyShow: boolean }>();
 const { show, detail, onlyShow } = toRefs(props);
 const emits = defineEmits(['close', 'refresh']);
@@ -89,6 +91,25 @@ const handleDesktop = async () => {
     }
     await getWinInfo();
 };
+
+const getDetailTplMsg = () => {
+    const { name, desc, demand_link, ui_link, api_link } = detail.value;
+    const nameStr = `${name}`;
+    const descStr = desc ? `需求描述：${desc}` : '|__|';
+    const demandLinkStr = `需求文档：${demand_link}`;
+    const uiLinkStr = ui_link ? `设计稿：${ui_link}` : '|__|';
+    const apiLinkStr = api_link ? `接口文档：${api_link}` : '|__|';
+    return `${nameStr}
+${descStr}
+${demandLinkStr}
+${uiLinkStr}
+${apiLinkStr}
+`.replaceAll('|__|\n', '');
+}
+
+const handleCopy = async () => {
+    await writeText(getDetailTplMsg());
+}
 
 const handleDelete = async () => {
     await invoke('delete_demand', { id: detail.value.id });

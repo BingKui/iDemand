@@ -1,5 +1,5 @@
 <template>
-    <DemandStatusList :status="3" />
+    <DemandStatusList :status="3" :haveAdd="false" />
 </template>
 
 <script setup lang="ts">

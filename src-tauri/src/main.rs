@@ -8,11 +8,9 @@
 
 mod demand;
 // mod log;
-mod setting;
 mod win;
 
 use demand::{DemandApp, DemandItem};
-use setting::{SettingApp, SettingInfo};
 use tauri::CustomMenuItem;
 use tauri::Manager;
 use tauri::RunEvent;
@@ -62,8 +60,6 @@ fn main() {
       Ok(())
     })
     .invoke_handler(tauri::generate_handler![
-      // setting 相关
-      get_setting,
       // 需求
       add_demand,
       delete_demand,
@@ -80,13 +76,6 @@ fn main() {
     ])
     .build(context)
     .expect("error while running tauri application");
-  let setting_app = SettingApp::new(&app.handle());
-  // 添加事件监听
-  app.listen_global("change-setting", move |event| {
-    let str = event.payload().unwrap();
-    let setting: SettingInfo = serde_json::from_str(str).unwrap();
-    setting_app.set_sys(setting);
-  });
   // 设置为无dock
   #[cfg(target_os = "macos")]
   app.set_activation_policy(tauri::ActivationPolicy::Accessory);
@@ -110,14 +99,6 @@ fn main() {
     }
     _ => {}
   });
-}
-
-// 系统设置相关-获取设置
-#[tauri::command]
-fn get_setting(app_handle: AppHandle) -> SettingInfo {
-  let sys_app = SettingApp::new(&app_handle);
-  let setting = sys_app.get_sys();
-  setting
 }
 
 // 添加需求

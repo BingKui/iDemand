@@ -6,6 +6,7 @@ import Demand from './views/Demand.vue';
 import Ongoing from './views/Ongoing.vue'
 import Complate from './views/Complate.vue'
 import Deploy from './views/Deploy.vue'
+import Report from './views/Report.vue'
 import Setting from './views/Setting.vue';
 import About from './views/About.vue';
 import CSSDoodle from 'css-doodle';
@@ -19,6 +20,7 @@ const routes = [
     { path: '/complate', component: Complate },
     { path: '/deploy', component: Deploy },
     { path: '/demand/:demandId', component: Demand },
+    { path: '/report', component: Report },
     { path: '/setting', component: Setting },
     { path: '/about', component: About },
 ];

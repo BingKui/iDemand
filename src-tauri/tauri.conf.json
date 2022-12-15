@@ -27,6 +27,28 @@
           "args": true
         }],
         "sidecar": false
+      },
+      "clipboard": {
+        "all": true,
+        "writeText": true,
+        "readText": true
+      },
+      "fs": {
+        "all": true,
+        "readFile": true,
+        "writeFile": true,
+        "readDir": true,
+        "copyFile": true,
+        "createDir": true,
+        "removeDir": true,
+        "removeFile": true,
+        "renameFile": true,
+        "exists": true
+      },
+      "dialog": {
+        "all": true,
+        "open": true,
+        "save": true
       }
     },
     "bundle": {
@@ -46,10 +68,10 @@
       "longDescription": "",
       "macOS": {
         "entitlements": null,
-        "exceptionDomain": "",
+        "exceptionDomain": "api.uiseed.cn",
         "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
+        "providerShortName": "康兵奎",
+        "signingIdentity": "3rd Party Mac Developer Application: Bingkui Kang (N8CP79P49X)"
       },
       "resources": [],
       "shortDescription": "",
@@ -64,12 +86,7 @@
       "csp": null
     },
     "updater": {
-      "active": true,
-      "endpoints": [
-        "https://oss.uiseed.cn/app/iDemand/latest.json"
-      ],
-      "dialog": false,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZGQ0VGRTUxMzg5NDY5RjUKUldUMWFaUTRVZjdPL3hybEZZdnFrSzlacVhUbVE5SEdRYWZJWWRLYWtEVTBHa2g1RElkUjZ5OGQK"
+      "active": false
     },
     "systemTray": {
       "iconPath": "icons/tray.png",

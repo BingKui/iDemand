@@ -1,10 +1,10 @@
 <template>
     <div class="v-main-menu-container margin-h-md">
         <Logo />
-        <el-menu default-active="/" class="main-menu font-size-md" router>
+        <el-menu :default-active="defaultActive" class="main-menu font-size-md" router>
             <el-menu-item index="/">
                 <ListOne class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
-                <span class="font-weight-bold">需求</span>
+                <span class="font-weight-bold">需求池</span>
             </el-menu-item>
             <el-menu-item index="/ongoing">
                 <Lightning class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
@@ -35,9 +35,13 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import Logo from './Logo.vue';
 import { ListOne, List, Send, Lightning, TableReport, SettingTwo, Info } from '@icon-park/vue-next';
-
+const defaultActive = ref<string>('/')
+onMounted(() => {
+    defaultActive.value = location.hash.replaceAll('#', '');
+});
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,9 @@
+import { AppSettingValue } from './../common/types';
 import { CodeAppItem } from "../common/types";
+
+export const APP_DEFAULT_SETTING: AppSettingValue = {
+    codeApp: 'vscode',
+};
 
 export const CODE_APP_LIST = <CodeAppItem[]>[{
     text: 'VS Code',

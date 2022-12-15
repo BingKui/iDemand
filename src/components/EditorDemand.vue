@@ -81,19 +81,23 @@ const defaultValue = {
     extra_links: <ExtraLinkItem[]>[],
 };
 
+const setFormValue = (value: DemandFormValue) => {
+    const { name, desc, demand_link, ui_link, api_link, code_path, publish_date, publish_link, extra_links } = value;
+    form.name = name;
+    form.desc = desc;
+    form.publish_date = publish_date;
+    form.demand_link = demand_link;
+    form.ui_link = ui_link;
+    form.api_link = api_link;
+    form.code_path = code_path;
+    form.publish_link = publish_link;
+    form.extra_links = extra_links;
+}
+
 watch(info, (val, oldVal) => {
     if (val) {
         console.log('内容编辑修改')
-        const { name, desc, demand_link, ui_link, api_link, code_path, publish_date, publish_link, extra_links } = val;
-        form.name = name;
-        form.desc = desc;
-        form.publish_date = publish_date;
-        form.demand_link = demand_link;
-        form.ui_link = ui_link;
-        form.api_link = api_link;
-        form.code_path = code_path;
-        form.publish_link = publish_link;
-        form.extra_links = extra_links;
+        setFormValue(val);
     }
 });
 
@@ -195,7 +199,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return
-    formEl.resetFields()
+    formEl.resetFields();
+    setFormValue(defaultValue);
 }
 
 </script>
