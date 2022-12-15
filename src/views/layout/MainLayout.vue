@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CloseOne class="close-icon" theme="filled" size="16" fill="#ed4014" :strokeWidth="2" @click="handleClose" />
+        <!-- <CloseOne class="close-icon" theme="filled" size="16" fill="#ed4014" :strokeWidth="2" @click="handleClose" /> -->
         <el-container class="v-main-layout">
             <el-aside class="left-side" width="200px" data-tauri-drag-region>
                 <MainMenu />
@@ -19,15 +19,15 @@ import hotkeys from 'hotkeys-js';
 import { onMounted } from 'vue';
 import MainMenu from './MainMenu.vue';
 
-const handleClose = () => {
-    WebviewWindow.getByLabel('main')?.hide();
-};
+// const handleClose = () => {
+//     WebviewWindow.getByLabel('main')?.hide();
+// };
 
 onMounted(() => {
     // 展示
     WebviewWindow.getByLabel('main')?.show();
     // 关闭
-    hotkeys('command+W', handleClose);
+    // hotkeys('command+W', handleClose);
 });
 </script>
 
@@ -42,6 +42,8 @@ onMounted(() => {
     height: 100vh;
     .left-side {
         background-color: @white;
+        border-radius: @border-radius;
+        box-shadow: var(--el-box-shadow-light);
     }
     .right-container {
         height: 100vh;

@@ -1,7 +1,7 @@
 <template>
-    <div class="v-main-menu-container">
+    <div class="v-main-menu-container margin-h-md">
         <Logo />
-        <el-menu default-active="/" class="main-menu font-size-lg" router>
+        <el-menu default-active="/" class="main-menu font-size-md" router>
             <el-menu-item index="/">
                 <ListOne class="flex-row-center margin-right" size="20" theme="outline" :strokeWidth="4" />
                 <span class="font-weight-bold">需求</span>
@@ -46,6 +46,12 @@ import { ListOne, List, Send, Lightning, TableReport, SettingTwo, Info } from '@
     .main-menu {
         border-right: none;
         user-select: none;
+    }
+    .el-menu-item {
+        border-radius: @border-radius;
+        &.is-active {
+            background-color: var(--el-menu-hover-bg-color);
+        }
     }
 }
 </style>

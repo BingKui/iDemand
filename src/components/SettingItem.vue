@@ -1,8 +1,8 @@
 <template>
     <el-card class="v-setting-item">
         <div class="setting-content flex-column-between">
-            <div class="font-size font-weight-bold">{{ label }}</div>
-            <div class="font-size-sm text-content">{{ tip }}</div>
+            <div class="font-size-md font-weight-bold">{{ label }}</div>
+            <div class="font-size-sm text-sub margin-top-sm">{{ tip }}</div>
             <div class="flex-row margin-top">
                 <slot></slot>
             </div>
@@ -19,11 +19,11 @@ const { label, tip } = toRefs(props);
 
 <style lang="less" scoped>
 .v-setting-item {
-    border-radius: 0;
+    border-radius: @border-radius;
     user-select: none;
     cursor: default;
     .setting-content {
-        height: 80px;
+        min-height: 80px;
     }
 }
 </style>

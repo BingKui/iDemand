@@ -43,6 +43,7 @@ const handleChange = () => {
 <style lang="less" scoped>
 .v-demand-item {
     user-select: none;
+    border-radius: @border-radius;
     .demand-name {
         cursor: pointer;
         &:hover {

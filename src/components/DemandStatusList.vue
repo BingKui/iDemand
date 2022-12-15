@@ -1,15 +1,17 @@
 <template>
     <div class="v-demand-status-list">
-        <div class="list-header flex-row padding-h-md">
+        <div class="list-header flex-row margin-all-md">
             <!-- 筛选条件 -->
             <span  v-if="haveAdd" class="margin-right"><EditorDemand info="" @refresh="getDemandList" /></span>
-            <el-input v-model="searchValue" @input="handleSearchValueChange" placeholder="输入名字或描述，进行搜索">
-                <template #prefix>
-                    <div class="search-prefix flex-row-center">
-                        <Search theme="outline" size="16" fill="#333" :strokeWidth="2" />
-                    </div>
-                </template>
-            </el-input>
+            <div class="input-container">
+                <el-input v-model="searchValue" size="large" @input="handleSearchValueChange" placeholder="输入名字或描述，进行搜索">
+                    <template #prefix>
+                        <div class="search-prefix flex-row-center">
+                            <Search theme="outline" size="16" fill="#333" :strokeWidth="2" />
+                        </div>
+                    </template>
+                </el-input>
+            </div>
         </div>
         <PerfectScrollbar class="list-container padding-all-md">
             <el-row :gutter="15" v-if="demandFilterList.length > 0">
@@ -84,12 +86,18 @@ const getDemandList = async () => {
 
     .list-header {
         cursor: default;
-        border-bottom: @border-mini;
-        height: @headerHeight;
-        // background-color: @white;
+        // border-bottom: @border-mini;
+        // height: @headerHeight;
+        border-radius: @border-radius;
+        background-color: transparent;
         .search-prefix {
             line-height: 1;
             height: 100%;
+        }
+        .input-container {
+            flex: 1;
+            box-shadow: var(--el-box-shadow-light);
+            border-radius: @border-radius;
         }
     }
 }

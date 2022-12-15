@@ -35,7 +35,6 @@ declare module '@vue/runtime-core' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSpace: typeof import('element-plus/es')['ElSpace']
-    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTag: typeof import('element-plus/es')['ElTag']
     ExtraModal: typeof import('./src/components/ExtraModal.vue')['default']
     LinkItem: typeof import('./src/components/LinkItem.vue')['default']

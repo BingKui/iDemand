@@ -22,9 +22,9 @@
         </div>
         <template #footer v-if="!onlyShow">
             <div class="action-footer padding-all-md flex-row">
-                <el-button type="success" @click="handleDesktop">{{ winInfo ? '从桌面移除' : '放到桌面' }}</el-button>
+                <el-button type="success" size="large" @click="handleDesktop">{{ winInfo ? '从桌面移除' : '放到桌面' }}</el-button>
                 <EditorDemand is-edit :info="detail" @refresh="handleRefresh" />
-                <el-button type="danger" @click="handleDelete">删除</el-button>
+                <el-button type="danger" size="large" @click="handleDelete">删除</el-button>
             </div>
         </template>
     </el-drawer>

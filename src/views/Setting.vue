@@ -14,14 +14,14 @@
                     </div>
                 </SettingItem>
             </el-col>
-            <el-col :span="12">
+            <!-- <el-col :span="12">
                 <SettingItem label="自动更新" tip="开启后每次启动都会自动检查版本更新">
                     <div class="flex-row-between flex-item-one">
                         <Updater haveButton />
                         <el-switch v-model="isAuto" @change="handleAutoChange" />
                     </div>
                 </SettingItem>
-            </el-col>
+            </el-col> -->
             <!-- <el-col :span="12">
                 <SettingItem label="每日提醒" tip="每日提醒待完成的任务信息。">
                     <el-switch v-model="isNotice" />
@@ -123,32 +123,32 @@ const handleAutoChange = async (value: boolean | any) => {
 
         &.is-checked {
             position: relative;
+            background-color: var(--el-menu-hover-bg-color);
+            // &::after,
+            // &::before {
+            //     content: '';
+            //     position: absolute;
+            //     color: @white;
+            //     width: 0;
+            //     height: 0;
+            //     border-style: solid;
+            //     border-width: 4px;
+            //     border-color: @primary;
+            // }
 
-            &::after,
-            &::before {
-                content: '';
-                position: absolute;
-                color: @white;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 4px;
-                border-color: @primary;
-            }
+            // &::after {
+            //     border-right-color: transparent;
+            //     border-bottom-color: transparent;
+            //     left: 0;
+            //     top: 0;
+            // }
 
-            &::after {
-                border-right-color: transparent;
-                border-bottom-color: transparent;
-                left: 0;
-                top: 0;
-            }
-
-            &::before {
-                border-left-color: transparent;
-                border-top-color: transparent;
-                bottom: 0;
-                right: 0;
-            }
+            // &::before {
+            //     border-left-color: transparent;
+            //     border-top-color: transparent;
+            //     bottom: 0;
+            //     right: 0;
+            // }
         }
     }
 

@@ -1,7 +1,7 @@
 <template>
-    <el-button type="primary" @click="handleAddAction">{{ isEdit ? '编辑' : '新增' }}需求</el-button>
+    <el-button type="primary" size="large" @click="handleAddAction">{{ isEdit ? '编辑' : '新增' }}需求</el-button>
     <el-drawer custom-class="v-editor-demand" v-model="showEditor" direction="rtl" size="50%"
-        :before-close="handleClose" :show-close="false" :append-to-body="true">
+        :before-close="handleClose" :close-on-click-modal="false" :show-close="false" :append-to-body="true">
         <template #header>
             <DrawerHeader :title="`${isEdit ? '编辑' : '新增'}需求`" @close="handleClose" />
         </template>

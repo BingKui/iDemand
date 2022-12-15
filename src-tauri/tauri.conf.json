@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "iDemand",
-    "version": "0.0.2"
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -79,13 +79,15 @@
     "windows": [{
       "fullscreen": false,
       "height": 640,
-      "resizable": true,
+      "resizable": false,
       "title": "iDemand",
       "width": 800,
       "minHeight": 640,
       "minWidth": 1000,
       "visible": false,
-      "decorations": false
+      "decorations": true,
+      "hiddenTitle": true,
+      "titleBarStyle": "Overlay"
     }]
   }
 }
