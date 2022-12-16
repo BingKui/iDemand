@@ -8,9 +8,10 @@
 <script setup lang="ts">
 import { } from 'vue';
 import { open, save } from '@tauri-apps/api/dialog';
-import { readTextFile, BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
+import { readTextFile, writeTextFile } from '@tauri-apps/api/fs';
 import { invoke } from '@tauri-apps/api/tauri';
 import { DemandItemType } from '../common/types';
+import { errorNotice, successNotice } from '../common/notice';
 const importDataAction = async () => {
     const selected = await open({
         multiple: false,
@@ -39,9 +40,10 @@ const importDataAction = async () => {
                 })
             }
         });
-        
+        successNotice('导入成功！');
     } catch (error) {
         console.log('报错');
+        errorNotice('导入错误，请重试！');
     }
 }
 
@@ -60,8 +62,13 @@ const exportDataAction = async () => {
     });
     console.log('地址为 ->', selected);
     if (!selected) return;
-    // Read the text file in the `$APPCONFIG/app.conf` path
-    await writeTextFile(selected as string, JSON.stringify(list));
+    try {
+        // Read the text file in the `$APPCONFIG/app.conf` path
+        await writeTextFile(selected as string, JSON.stringify(list));
+        successNotice('导出成功成功！');
+    } catch (error) {
+        errorNotice('导出失败，请重试！');
+    }
 }
 </script>
 

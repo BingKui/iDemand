@@ -33,3 +33,20 @@ export const validUrl = (rule: any, value: any, callback: any) => {
     }
     callback();
 }
+
+/**
+ * 计算距离现在的时间
+ * @param date 需要计算的时间
+ */
+export const dealTiemDiff = (date: string) => {
+    const now = dayjs();
+    const time = dayjs(date);
+    // const year = now.diff(time, 'year', true);
+    // if (year > 1) return `${Math.floor(year)}年后`;
+    // const month = now.diff(time, 'month', true);
+    // if (month > 1) return `${Math.floor(month)}月后`;
+    const day = now.diff(time, 'day', false);
+    if (day > 1) return `${Math.floor(day)}天后`;
+    return '今天';
+}
+

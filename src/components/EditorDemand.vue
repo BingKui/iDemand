@@ -62,6 +62,7 @@ import { DemandFormValue, DemandItemType, ExtraLinkItem } from '../common/types'
 import { createDemandItem, editorDemandItem, validUrl } from '../common/utils';
 import { invoke } from '@tauri-apps/api/tauri';
 import { ElMessage } from 'element-plus'
+import { successNotice } from '../common/notice';
 
 const showEditor = ref(false);
 const props = defineProps<{ isEdit?: boolean; info: DemandItemType; }>();
@@ -182,6 +183,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
                 const item = editorDemandItem(params, info.value);
                 console.log('更新参数为 ->', item);
                 await invoke('update_demand', { item });
+                successNotice('更新需求成功！');
                 emits('refresh');
                 handleClose();
             } else {
@@ -189,6 +191,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
                 console.log('提交参数为 ->', item);
                 await invoke('add_demand', { item });
                 emits('refresh');
+                successNotice('新增需求成功！');
                 handleClose();
             }
         } else {

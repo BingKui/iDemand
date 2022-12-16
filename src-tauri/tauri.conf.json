@@ -67,7 +67,7 @@
       "identifier": "cn.uiseed.idemand",
       "longDescription": "",
       "macOS": {
-        "entitlements": null,
+        "entitlements": "../entitlements.plist",
         "exceptionDomain": "api.uiseed.cn",
         "frameworks": [],
         "providerShortName": "康兵奎",

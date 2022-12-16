@@ -1,7 +1,7 @@
 <template>
     <div class="v-setting-page padding-all-md">
         <el-row :gutter="15">
-            <el-col :span="12">
+            <!-- <el-col :span="12">
                 <SettingItem label="代码编辑器" tip="设置打开代码的编辑器。">
                     <div class="setting-shell flex-row-end">
                         <el-radio-group v-model="sysInfo.codeApp">
@@ -13,7 +13,7 @@
                         </el-radio-group>
                     </div>
                 </SettingItem>
-            </el-col>
+            </el-col> -->
             <!-- 导出/导出数据 -->
             <el-col :span="12">
                 <SettingItem label="导入/导出" tip="可以导入数据，也可以导出数据">

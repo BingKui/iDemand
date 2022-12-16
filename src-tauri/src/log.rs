@@ -17,7 +17,7 @@ pub struct LogApp {
 
 impl LogApp {
     pub fn new(app_handle: &AppHandle) -> Result<LogApp> {
-        let res_dir = app_handle.path_resolver().app_dir().unwrap();
+        let res_dir = app_handle.path_resolver().app_data_dir().unwrap();
         let db_path = res_dir.join("idemand.sqlite");
         let is_exist = Path::new(&db_path).exists();
         if !is_exist {

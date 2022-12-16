@@ -20,7 +20,7 @@ pub struct WinApp {
 
 impl WinApp {
     pub fn new(app_handle: &AppHandle) -> Result<WinApp> {
-        let res_dir = app_handle.path_resolver().app_dir().unwrap();
+        let res_dir = app_handle.path_resolver().app_data_dir().unwrap();
         let db_path = res_dir.join("idemand.sqlite");
         let is_folder = Path::new(res_dir.as_os_str()).exists();
         if !is_folder {

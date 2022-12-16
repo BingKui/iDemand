@@ -13,8 +13,8 @@ export const setAppSettingData = async (info: AppSettingValue) => {
 // 获取app设置信息
 export const getAppSettingData = async (): Promise<AppSettingValue> => {
     try {
-        const val = await iDemandStore.get(APP_INFO_KEY) || {};
-        return { ...APP_DEFAULT_SETTING, ...val } as AppSettingValue;
+        const val = (await iDemandStore.get(APP_INFO_KEY)) || {};
+        return { ...APP_DEFAULT_SETTING, ...(val as AppSettingValue) };
     } catch (error) {
         return APP_DEFAULT_SETTING;
     }

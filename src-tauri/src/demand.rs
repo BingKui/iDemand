@@ -35,7 +35,7 @@ pub struct DemandApp {
 
 impl DemandApp {
     pub fn new(app_handle: &AppHandle) -> Result<DemandApp> {
-        let res_dir = app_handle.path_resolver().app_dir().unwrap();
+        let res_dir = app_handle.path_resolver().app_data_dir().unwrap();
         let db_path = res_dir.join("idemand.sqlite");
         let is_folder = Path::new(res_dir.as_os_str()).exists();
         if !is_folder {
@@ -72,6 +72,7 @@ impl DemandApp {
             id,
             name,
             desc,
+            status,
             publish_date,
             demand_link,
             ui_link,
@@ -84,8 +85,8 @@ impl DemandApp {
         let now = Local::now().timestamp();
         let extra_str = serde_json::to_string(&extra_links).unwrap();
         match self.conn.execute(
-            "INSERT INTO DemandList (id, name, desc, publish_date, demand_link, ui_link, api_link, code_path, publish_link, extra_links, create_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [id, name.to_string(), desc.to_string(), publish_date.to_string(), demand_link.to_string(),
+            "INSERT INTO DemandList (id, name, desc, status, publish_date, demand_link, ui_link, api_link, code_path, publish_link, extra_links, create_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [id, name.to_string(), desc.to_string(), status.to_string(), publish_date.to_string(), demand_link.to_string(),
                 ui_link.to_string(), api_link.to_string(), code_path.to_string(), publish_link.to_string(), extra_str, now.to_string()]
         ) {
             Ok(insert) => {

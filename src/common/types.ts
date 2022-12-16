@@ -46,6 +46,7 @@ export interface CodeAppItem {
     icon: string;
     value: string;
     shell: string;
+    openUrl: Function;
 }
 
 export interface AppSettingValue {

@@ -27,14 +27,22 @@ const getShell = async () => {
 const handleItemClick = async () => {
     if (value === undefined) return;
     if (type.value === 'code') {
-        const shell = await getShell();
-        const cmd = new Command(shell, ['.'], {
-            cwd: `${value.value}`,
-        });
-        cmd.on('close', data => {
-            console.log('打开项目成功！');
-        });
-        cmd.execute();
+        // await open(value.value, '');
+        // try {
+        //     const shell = await getShell();
+        //     const cmd = new Command(shell, ['.'], {
+        //         cwd: `${value.value}`,
+        //     });
+        //     cmd.on('close', data => {
+        //         console.log('打开项目成功！');
+        //     });
+        //     cmd.execute();
+        // } catch (error) {
+        //     // 使用url打开
+        // }
+        await open(`vscode://file/${value.value}/`);
+        // await open(`jetbrains://web-storm/navigate/reference?path=${value.value}`);
+        
     } else {
         await open(value.value);
     }
