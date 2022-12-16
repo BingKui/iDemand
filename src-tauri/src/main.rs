@@ -62,6 +62,7 @@ fn main() {
     .invoke_handler(tauri::generate_handler![
       // 需求
       add_demand,
+      import_demand,
       delete_demand,
       update_demand,
       update_status,
@@ -106,6 +107,13 @@ fn main() {
 fn add_demand(app_handle: AppHandle, item: DemandItem) -> bool {
   let demand_app = DemandApp::new(&app_handle).unwrap();
   let result = demand_app.add_demand(item);
+  result
+}
+// 导入需求
+#[tauri::command]
+fn import_demand(app_handle: AppHandle, item: DemandItem) -> bool {
+  let demand_app = DemandApp::new(&app_handle).unwrap();
+  let result = demand_app.import_demand(item);
   result
 }
 // 删除需求

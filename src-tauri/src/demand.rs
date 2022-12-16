@@ -1,10 +1,10 @@
 // 清单管理
-use std::path::Path;
 use chrono::Local;
+use fs_err as fs;
 use rusqlite::{Connection, Result};
 use serde::{Deserialize, Serialize};
+use std::path::Path;
 use tauri::AppHandle;
-use fs_err as fs;
 
 #[derive(Serialize, Deserialize)]
 pub struct ExtraLinkItem {
@@ -72,7 +72,6 @@ impl DemandApp {
             id,
             name,
             desc,
-            status,
             publish_date,
             demand_link,
             ui_link,
@@ -85,8 +84,8 @@ impl DemandApp {
         let now = Local::now().timestamp();
         let extra_str = serde_json::to_string(&extra_links).unwrap();
         match self.conn.execute(
-            "INSERT INTO DemandList (id, name, desc, status, publish_date, demand_link, ui_link, api_link, code_path, publish_link, extra_links, create_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [id, name.to_string(), desc.to_string(), status.to_string(), publish_date.to_string(), demand_link.to_string(),
+            "INSERT INTO DemandList (id, name, desc, publish_date, demand_link, ui_link, api_link, code_path, publish_link, extra_links, create_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [id, name.to_string(), desc.to_string(), publish_date.to_string(), demand_link.to_string(),
                 ui_link.to_string(), api_link.to_string(), code_path.to_string(), publish_link.to_string(), extra_str, now.to_string()]
         ) {
             Ok(insert) => {
@@ -99,8 +98,43 @@ impl DemandApp {
             }
         }
     }
+    pub fn import_demand(&self, item: DemandItem) -> bool {
+        let DemandItem {
+            id,
+            name,
+            desc,
+            status,
+            publish_date,
+            demand_link,
+            ui_link,
+            api_link,
+            code_path,
+            publish_link,
+            extra_links,
+            create_date,
+            update_date,
+        } = item;
+        let extra_str = serde_json::to_string(&extra_links).unwrap();
+        match self.conn.execute(
+            "INSERT INTO DemandList (id, name, desc, status, publish_date, demand_link, ui_link, api_link, code_path, publish_link, extra_links, create_date, update_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [id, name.to_string(), desc.to_string(), status.to_string(), publish_date.to_string(), demand_link.to_string(),
+                ui_link.to_string(), api_link.to_string(), code_path.to_string(), publish_link.to_string(), extra_str, create_date.to_string(), update_date.to_string()]
+        ) {
+            Ok(insert) => {
+                println!("{} row inserted", insert);
+                true
+            }
+            Err(err) => {
+                println!("some error: {}", err);
+                false
+            }
+        }
+    }
     pub fn del_demand(&self, id: String) -> bool {
-        match self.conn.execute("DELETE FROM DemandList WHERE id = ?", [id]) {
+        match self
+            .conn
+            .execute("DELETE FROM DemandList WHERE id = ?", [id])
+        {
             Ok(..) => true,
             Err(err) => {
                 println!("some error: {}", err);
@@ -162,7 +196,10 @@ impl DemandApp {
         Ok(items)
     }
     pub fn get_demands_by_status(&self, status: f64) -> Result<Vec<DemandItem>> {
-        let mut stmt = self.conn.prepare("SELECT * FROM DemandList WHERE status = ? ORDER BY create_date DESC").unwrap();
+        let mut stmt = self
+            .conn
+            .prepare("SELECT * FROM DemandList WHERE status = ? ORDER BY create_date DESC")
+            .unwrap();
         let items_iter = stmt.query_map([status.to_string()], |row| {
             let links_str: String = row.get(10).unwrap();
             let links = serde_json::from_str(&links_str).unwrap();
