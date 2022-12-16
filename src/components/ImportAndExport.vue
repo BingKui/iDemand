@@ -35,7 +35,7 @@ const importDataAction = async () => {
             // 如果存在，不做处理
             // 不存在添加
             if (!flag) {
-                await invoke('add_demand', {
+                await invoke('import_demand', {
                     item,
                 })
             }
