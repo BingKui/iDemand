@@ -22,13 +22,13 @@
                 <el-form-item label="接口" prop="api_link">
                     <el-input v-model="form.api_link" placeholder="输入API地址" />
                 </el-form-item>
-                <!-- <el-form-item label="项目地址" prop="code_path">
+                <el-form-item label="项目地址" prop="code_path">
                     <div class="flex-row flex-item-one">
                         <el-input class="flex-item-one" v-model="form.code_path" placeholder="选择项目地址" />
                         <FolderOpen class="margin-left pointer-element" theme="outline" size="24" fill="#333"
                             :strokeWidth="2" @click="handleSelectPath" />
                     </div>
-                </el-form-item> -->
+                </el-form-item>
                 <el-form-item label="发布地址" prop="publish_link">
                     <el-input v-model="form.publish_link" placeholder="输入发布地址" />
                 </el-form-item>

@@ -16,7 +16,7 @@
       "shell": {
         "all": false,
         "execute": true,
-        "open": true,
+        "open": "^(https|vscode|jetbrains)?://",
         "scope": [{
           "name": "code-open",
           "cmd": "code",

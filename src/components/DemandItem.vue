@@ -9,7 +9,7 @@
             <ActionItem v-if="demand.demand_link" type="demand" :value="demand.demand_link" />
             <ActionItem v-if="demand.ui_link" type="ui" :value="demand.ui_link" />
             <ActionItem v-if="demand.api_link" type="api" :value="demand.api_link" />
-            <!-- <ActionItem v-if="demand.code_path" type="code" :value="demand.code_path" /> -->
+            <ActionItem v-if="demand.code_path" type="code" :value="demand.code_path" />
             <ActionItem v-if="demand.publish_link" type="publish" :value="demand.publish_link" />
             <div v-if="demand.publish_date" class="font-size text-warning">{{ publishDateTip }}</div>
         </el-space>
